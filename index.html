@@ -1,45 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fix One Thing</title>
 
-  <!-- ✅ Stylesheet must be linked like this -->
-  <link rel="stylesheet" href="styles.css" />
+  <!-- ✅ This loads your CSS -->
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <main class="app">
 
-  <!-- ROLE SELECTION SCREEN -->
   <section id="roleSelect" class="card">
     <h1>Fix One Thing</h1>
     <p class="subtitle">Choose your role to begin.</p>
 
-    <div class="role-buttons">
-      <button id="managerBtn">I’m a Manager</button>
-      <button id="peerBtn">I’m a Peer</button>
-    </div>
+    <button id="managerBtn">I’m a Manager</button>
+    <button id="peerBtn">I’m a Peer</button>
   </section>
 
-  <!-- GAME SCREEN (hidden by default) -->
   <section id="game">
-    <header>
-      <h1>Fix One Thing</h1>
-      <div id="counter"></div>
-      <div id="roleBadge" class="role-badge"></div>
-    </header>
+    <h2 id="roleBadge"></h2>
+    <p id="feedbackText"></p>
+    <div id="choices"></div>
+    <button id="next" disabled>Next</button>
+  </section>
 
-    <div class="card">
-      <h2>Original Feedback</h2>
-      <p id="feedbackText" class="feedback-text"></p>
-    </div>
+</main>
 
-    <div class="card">
-      <h2>Choose One Fix</h2>
-      <div id="choices" class="choices"></div>
-    </div>
-
-    <div class="card">
-
+<!-- ✅ This loads your JavaScript -->
+<script src="script.js"></script>
+</body>
+</html>
