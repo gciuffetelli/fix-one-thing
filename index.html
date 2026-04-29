@@ -2,45 +2,59 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Fix One Thing – Feedback Game</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fix One Thing — Role Path</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
 <main class="app">
-  <header>
+
+  <!-- ROLE SELECT -->
+  <section id="roleSelect" class="card">
     <h1>Fix One Thing</h1>
-    <p class="subtitle">
-      Improve feedback by fixing the *one thing that matters most*.
-    </p>
-    <div id="counter"></div>
-  </header>
-
-  <section class="card">
-    <h2>Feedback</h2>
-    <p id="feedbackText" class="feedback-text"></p>
-  </section>
-
-  <section class="card">
-    <h2>Choose One Fix</h2>
-    <div id="choices" class="choices"></div>
-  </section>
-
-  <section class="card">
-    <h2>Feedback Quality</h2>
-    <div class="meter">
-      <div><span>Clarity</span><div class="bar"><div id="clarity"></div></div></div>
-      <div><span>Action</span><div class="bar"><div id="action"></div></div></div>
-      <div><span>Tone</span><div class="bar"><div id="tone"></div></div></div>
+    <p class="subtitle">Choose your role to begin.</p>
+    <div class="role-buttons">
+      <button onclick="setRole('manager')">I’m a Manager</button>
+      <button onclick="setRole('peer')">I’m a Peer</button>
     </div>
   </section>
 
-  <section id="result" class="card hidden"></section>
+  <!-- GAME -->
+  <section id="game" class="hidden">
 
-  <div class="controls">
-    <button id="next" disabled>Next</button>
-  </div>
+    <header>
+      <h1>Fix One Thing</h1>
+      <div id="counter"></div>
+    </header>
+
+    <div class="card">
+      <h2>Original Feedback</h2>
+      <p id="feedbackText" class="feedback-text"></p>
+    </div>
+
+    <div class="card">
+      <h2>Choose One Fix</h2>
+      <div id="choices" class="choices"></div>
+    </div>
+
+    <div class="card">
+      <h2>Feedback Quality</h2>
+      <div class="meter">
+        <div><span>Clarity</span><div class="bar"><div id="clarity"></div></div></div>
+        <div><span>Action</span><div class="bar"><div id="action"></div></div></div>
+        <div><span>Tone</span><div class="bar"><div id="tone"></div></div></div>
+      </div>
+    </div>
+
+    <div id="result" class="card hidden"></div>
+
+    <div class="controls">
+      <button id="next" disabled>Next</button>
+    </div>
+
+  </section>
+
 </main>
 
 <script src="script.js"></script>
