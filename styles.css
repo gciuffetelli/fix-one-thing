@@ -9,14 +9,12 @@ body {
   color: #1f2937;
 }
 
-/* App wrapper */
 .app {
   max-width: 900px;
   margin: auto;
   padding: 2.5rem 2rem;
 }
 
-/* Cards */
 .card {
   background: white;
   border-radius: 16px;
@@ -25,7 +23,6 @@ body {
   box-shadow: 0 10px 25px rgba(0,0,0,0.05);
 }
 
-/* Typography */
 .subtitle {
   color: #6b7280;
   margin-bottom: 1rem;
@@ -37,7 +34,7 @@ body {
   border-radius: 12px;
 }
 
-/* Role select */
+/* ✅ ROLE SELECTION */
 #roleSelect {
   position: relative;
   z-index: 10;
@@ -48,7 +45,7 @@ body {
   gap: 1rem;
 }
 
-/* Buttons */
+/* ✅ BUTTONS */
 button {
   padding: 0.6rem 1.4rem;
   border-radius: 999px;
@@ -64,18 +61,16 @@ button:disabled {
   cursor: not-allowed;
 }
 
-/* Game area — IMPORTANT: disabled by default */
+/* ✅ GAME HIDDEN BY DEFAULT */
 #game {
   display: none;
-  pointer-events: none;
 }
 
 #game.active {
   display: block;
-  pointer-events: auto;
 }
 
-/* Role badge */
+/* ROLE BADGE */
 .role-badge {
   display: inline-block;
   margin-top: 0.5rem;
@@ -87,7 +82,7 @@ button:disabled {
   font-size: 0.85rem;
 }
 
-/* Choices */
+/* CHOICES */
 .choices {
   display: grid;
   gap: 0.75rem;
@@ -105,7 +100,7 @@ button:disabled {
   border-color: #6366f1;
 }
 
-/* Meter */
+/* METER */
 .meter span {
   display: inline-block;
   width: 80px;
@@ -127,9 +122,7 @@ button:disabled {
   transition: width 0.4s ease;
 }
 
-/* Controls */
 .controls {
   text-align: right;
-  margin-top: 1rem;
 }
-
+``
