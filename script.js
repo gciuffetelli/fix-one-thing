@@ -105,7 +105,8 @@ function selectFix(fix, el) {
 
   result.classList.remove("hidden");
   result.innerHTML = `
-    <strong>Updated feedback (${role === 'manager' ? 'Manager' : 'Peer'})</strong>
+<strong>${role === 'manager' ? 'Manager version' : 'Peer version'} of the feedback:</strong>
+
     <p>${fix.full}</p>
   `;
 
