@@ -56,6 +56,7 @@ const items = [
 
 const roleSection = document.getElementById("roleSelect");
 const game = document.getElementById("game");
+const originalGameHTML = game.innerHTML;
 const feedbackText = document.getElementById("feedbackText");
 const choices = document.getElementById("choices");
 const counter = document.getElementById("counter");
@@ -113,8 +114,60 @@ function selectFix(fix, el) {
   nextBtn.disabled = false;
 }
 
-nextBtn.onclick = () => {
+nextBtn.onclick = nextHandler;
+
+function nextHandler() {
   index++;
-  if (index < items.length) loadItem();
-  else game.innerHTML = '<h2>✅ Completed</h2><p>You practiced improving feedback using the lens of your role.</p>';
-};
+  if (index < items.length) {
+    loadItem();
+  } else {
+    showCompletionScreen();
+  }
+}
+function showCompletionScreen() {
+  const otherRole = role === "manager" ? "peer" : "manager";
+  const otherRoleLabel = otherRole === "manager" ? "Manager" : "Peer";
+
+  game.innerHTML = `
+    <div class="card">
+      <h2>✅ Completed</h2>
+      <p>
+        You practiced improving feedback using the
+        <strong>${role === "manager" ? "Manager" : "Peer"}</strong> lens.
+      </p>
+
+      <button onclick="resetGame('${otherRole}')">
+        🔁 Replay as ${otherRoleLabel}
+      </button>
+    </div>
+  `;
+}
+function resetGame(newRole) {
+  role = newRole;
+  index = 0;
+
+  // Restore original game content
+  game.innerHTML = originalGameHTML;
+
+  // Re‑grab DOM elements
+  hookGameElements();
+
+  // Update role badge
+  document.getElementById("roleBadge").textContent =
+    role === "manager" ? "Manager Path" : "Peer Path";
+
+  loadItem();
+}
+function hookGameElements() {
+  feedbackText = document.getElementById("feedbackText");
+  choices = document.getElementById("choices");
+  counter = document.getElementById("counter");
+  result = document.getElementById("result");
+  nextBtn = document.getElementById("next");
+
+  bars.clarity = document.getElementById("clarity");
+  bars.action = document.getElementById("action");
+  bars.tone = document.getElementById("tone");
+
+  nextBtn.onclick = nextHandler;
+}
