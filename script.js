@@ -69,16 +69,23 @@ const bars = {
   tone: document.getElementById("tone")
 };
 
-function setRole(r) {
-  role = r;
+function setRole(selectedRole) {
+  role = selectedRole;
+  index = 0;
+
+  // Hide role selection
+  roleSection.style.display = "none";
+
+  // Explicitly activate the game
+  game.classList.add("active");
 
   document.getElementById("roleBadge").textContent =
     role === "manager" ? "Manager Path" : "Peer Path";
 
-  roleSection.classList.add("hidden");
-  game.classList.remove("hidden");
+  hookElements();
   loadItem();
 }
+``
 
 function loadItem() {
   counter.textContent = `Item ${index + 1} of ${items.length}`;
