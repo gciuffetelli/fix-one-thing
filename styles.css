@@ -97,7 +97,13 @@ button:disabled {
   display: none !important;
 }
 
-
+#game.hidden {
+  pointer-events: none;
+}
+#roleSelect {
+  position: relative;
+  z-index: 10;
+}
 .role-badge {
   display: inline-block;
   margin-top: 0.5rem;
