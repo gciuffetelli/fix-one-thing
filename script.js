@@ -185,16 +185,19 @@ function showCompletion() {
   const otherRole = role === "manager" ? "peer" : "manager";
   const otherLabel = otherRole === "manager" ? "Manager" : "Peer";
 
-  game.innerHTML = `
-    <div class="card">
-      <h2>✅ Completed</h2>
-      <p>
-        You practiced improving feedback using the
-        <strong>${role === "manager" ? "Manager" : "Peer"}</strong> lens.
-      </p>
-      <button onclick="startGame('${otherRole}')">
-        🔁 Replay as ${otherLabel}
-      </button>
-    </div>
+  feedbackText.textContent = "✅ Completed";
+  choices.innerHTML = `
+    <p>
+      You practiced improving feedback using the
+      <strong>${role === "manager" ? "Manager" : "Peer"}</strong> lens.
+    </p>
+    <button id="replayBtn">🔁 Replay as ${otherLabel}</button>
   `;
+
+  document.getElementById("replayBtn").onclick = () => {
+    resetGame(otherRole);
+  };
+
+  nextBtn.style.display = "none";
 }
+
