@@ -4,32 +4,432 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fix One Thing</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-  <!-- ✅ This loads your CSS -->
-  <link rel="stylesheet" href="styles.css">
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(180deg, #f6f8fb, #eef2f7);
+      color: #1f2937;
+      min-height: 100vh;
+      padding: 2.5rem 1rem;
+    }
+
+    .app {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    /* ── CARDS ── */
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 1.75rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+    }
+
+    h1 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+      color: #111827;
+    }
+    h2 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #374151;
+      margin-bottom: 1rem;
+    }
+
+    .subtitle {
+      color: #6b7280;
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    /* ── ROLE BUTTONS ── */
+    .role-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* ── BUTTONS ── */
+    button {
+      padding: 0.6rem 1.4rem;
+      border-radius: 999px;
+      border: none;
+      background: #4f46e5;
+      color: white;
+      font-size: 0.95rem;
+      font-family: inherit;
+      cursor: pointer;
+      transition: background 0.15s, opacity 0.15s;
+    }
+    button:hover:not(:disabled) { background: #4338ca; }
+    button:disabled { opacity: 0.45; cursor: not-allowed; }
+
+    /* ── ROLE BADGE ── */
+    .role-badge {
+      display: inline-block;
+      padding: 0.3rem 0.85rem;
+      border-radius: 999px;
+      background: #e0e7ff;
+      color: #3730a3;
+      font-weight: 600;
+      font-size: 0.8rem;
+      margin-bottom: 1.25rem;
+    }
+
+    /* ── COUNTER ── */
+    .counter {
+      font-size: 0.8rem;
+      color: #9ca3af;
+      margin-bottom: 0.75rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── FEEDBACK TEXT ── */
+    .feedback-text-box {
+      background: #f1f5f9;
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+      font-size: 1.05rem;
+      font-style: italic;
+      color: #374151;
+      margin-bottom: 1.25rem;
+      line-height: 1.6;
+    }
+
+    /* ── METER ── */
+    .meter-card {
+      background: white;
+      border-radius: 16px;
+      padding: 1.25rem 1.75rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+    }
+    .meter-title {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #9ca3af;
+      margin-bottom: 0.85rem;
+    }
+    .meter-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 0.6rem;
+    }
+    .meter-label {
+      width: 72px;
+      font-size: 0.85rem;
+      color: #6b7280;
+      font-weight: 500;
+      flex-shrink: 0;
+    }
+    .bar-track {
+      flex: 1;
+      height: 10px;
+      background: #e5e7eb;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%;
+      background: #4f46e5;
+      border-radius: 999px;
+      transition: width 0.5s ease;
+    }
+
+    /* ── CHOICES ── */
+    .choices-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #9ca3af;
+      margin-bottom: 0.6rem;
+    }
+    .choices {
+      display: grid;
+      gap: 0.6rem;
+      margin-bottom: 1.25rem;
+    }
+    .choice {
+      padding: 0.8rem 1rem;
+      border-radius: 12px;
+      border: 1px solid #d1d5db;
+      cursor: pointer;
+      font-size: 0.95rem;
+      color: #374151;
+      background: white;
+      text-align: left;
+      font-family: inherit;
+      transition: border-color 0.15s, background 0.15s;
+      line-height: 1.45;
+    }
+    .choice:hover:not(.selected) { border-color: #a5b4fc; background: #f5f3ff; }
+    .choice.selected { background: #eef2ff; border-color: #6366f1; color: #3730a3; font-weight: 500; }
+
+    /* ── RESULT ── */
+    .result-card {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.25rem;
+      font-size: 0.95rem;
+      line-height: 1.65;
+      display: none;
+      color: #14532d;
+    }
+    .result-card.visible { display: block; }
+    .result-card strong { color: #166534; display: block; margin-bottom: 0.4rem; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; }
+    .result-card p { color: #1f2937; }
+
+    /* ── CONTROLS ── */
+    .controls { text-align: right; }
+
+    /* ── COMPLETION ── */
+    .completion-card {
+      background: white;
+      border-radius: 16px;
+      padding: 2rem 1.75rem;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+      text-align: center;
+      display: none;
+    }
+    .completion-card.visible { display: block; }
+    .completion-emoji { font-size: 2.5rem; margin-bottom: 0.75rem; }
+    .completion-title { font-size: 1.2rem; font-weight: 600; margin-bottom: 0.5rem; color: #111827; }
+    .completion-sub { font-size: 0.95rem; color: #6b7280; margin-bottom: 1.5rem; line-height: 1.6; }
+    .replay-btn { background: #4f46e5; color: white; }
+
+    /* ── GAME HIDDEN BY DEFAULT ── */
+    #game { display: none; }
+    #game.active { display: block; }
+  </style>
 </head>
 <body>
+<div class="app">
 
-<main class="app">
-
+  <!-- ROLE SELECTION -->
   <section id="roleSelect" class="card">
     <h1>Fix One Thing</h1>
-    <p class="subtitle">Choose your role to begin.</p>
-
-    <button id="managerBtn">I’m a Manager</button>
-    <button id="peerBtn">I’m a Peer</button>
+    <p class="subtitle">Choose your role to practice improving feedback statements.</p>
+    <div class="role-buttons">
+      <button id="managerBtn">I'm a Manager</button>
+      <button id="peerBtn">I'm a Peer</button>
+    </div>
   </section>
 
-<section id="game" style="display:none;">
-    <h2 id="roleBadge"></h2>
-    <p id="feedbackText"></p>
-    <div id="choices"></div>
-    <button id="next" disabled>Next</button>
+  <!-- METER -->
+  <div class="meter-card" id="meterCard" style="display:none">
+    <div class="meter-title">Feedback Quality Meter</div>
+    <div class="meter-row">
+      <span class="meter-label">Clarity</span>
+      <div class="bar-track"><div class="bar-fill" id="clarity" style="width:30%"></div></div>
+    </div>
+    <div class="meter-row">
+      <span class="meter-label">Action</span>
+      <div class="bar-track"><div class="bar-fill" id="action" style="width:30%"></div></div>
+    </div>
+    <div class="meter-row">
+      <span class="meter-label">Tone</span>
+      <div class="bar-track"><div class="bar-fill" id="tone" style="width:30%"></div></div>
+    </div>
+  </div>
+
+  <!-- GAME -->
+  <section id="game">
+    <div class="card">
+      <div class="role-badge" id="roleBadge"></div>
+      <div class="counter" id="counter"></div>
+      <div class="feedback-text-box" id="feedbackText"></div>
+      <div class="choices-label">Which fix improves this feedback?</div>
+      <div class="choices" id="choices"></div>
+      <div class="result-card" id="result"></div>
+      <div class="controls">
+        <button id="next" disabled>Next →</button>
+      </div>
+    </div>
   </section>
 
-</main>
+  <!-- COMPLETION -->
+  <div class="completion-card" id="completionCard">
+    <div class="completion-emoji">✅</div>
+    <div class="completion-title" id="completionTitle"></div>
+    <div class="completion-sub" id="completionSub"></div>
+    <button class="replay-btn" id="replayBtn"></button>
+  </div>
 
-<!-- ✅ This loads your JavaScript -->
-<script src="script.js"></script>
+</div>
+
+<script>
+  var role = null;
+  var index = 0;
+  var baseMeter = { clarity: 30, action: 30, tone: 30 };
+
+  var items = [
+    {
+      text: "You need to be more proactive.",
+      fixes: {
+        manager: [
+          {
+            label: "Add a clear expectation",
+            impact: "action",
+            full: "I've noticed that in recent meetings, you wait to be prompted before sharing updates. Going forward, I'd like you to proactively bring updates to each meeting."
+          },
+          {
+            label: "Add a specific example",
+            impact: "clarity",
+            full: "In the last two team meetings, you didn't share progress updates unless asked. That's what I mean by being proactive."
+          }
+        ],
+        peer: [
+          {
+            label: "Clarify what you're noticing",
+            impact: "clarity",
+            full: "I've noticed that in meetings, updates usually come only after someone asks. I wanted to share that observation with you."
+          },
+          {
+            label: "Soften the tone",
+            impact: "tone",
+            full: "I want to share feedback from my perspective, with the goal of helping our meetings run more smoothly."
+          }
+        ]
+      }
+    },
+    {
+      text: "Your attitude in meetings isn't great.",
+      fixes: {
+        manager: [
+          {
+            label: "Focus on observable behavior",
+            impact: "clarity",
+            full: "In yesterday's meeting, you interrupted twice while others were speaking, which disrupted the discussion."
+          }
+        ],
+        peer: [
+          {
+            label: "Remove judgment and describe impact",
+            impact: "tone",
+            full: "During yesterday's meeting, interruptions made it harder for the group to hear everyone's ideas."
+          }
+        ]
+      }
+    }
+  ];
+
+  // DOM refs
+  var roleSection  = document.getElementById('roleSelect');
+  var gameSection  = document.getElementById('game');
+  var meterCard    = document.getElementById('meterCard');
+  var completionCard = document.getElementById('completionCard');
+  var managerBtn   = document.getElementById('managerBtn');
+  var peerBtn      = document.getElementById('peerBtn');
+  var feedbackText = document.getElementById('feedbackText');
+  var choicesEl    = document.getElementById('choices');
+  var counterEl    = document.getElementById('counter');
+  var resultEl     = document.getElementById('result');
+  var nextBtn      = document.getElementById('next');
+  var roleBadge    = document.getElementById('roleBadge');
+  var bars = {
+    clarity: document.getElementById('clarity'),
+    action:  document.getElementById('action'),
+    tone:    document.getElementById('tone')
+  };
+
+  managerBtn.onclick = function() { startGame('manager'); };
+  peerBtn.onclick    = function() { startGame('peer'); };
+
+  function startGame(selectedRole) {
+    role  = selectedRole;
+    index = 0;
+
+    roleSection.style.display = 'none';
+    gameSection.classList.add('active');
+    gameSection.style.display = 'block';
+    meterCard.style.display = 'block';
+    completionCard.classList.remove('visible');
+
+    roleBadge.textContent = role === 'manager' ? 'Manager Path' : 'Peer Path';
+    nextBtn.style.display = 'inline-block';
+
+    loadItem();
+  }
+
+  function loadItem() {
+    counterEl.textContent = 'Item ' + (index + 1) + ' of ' + items.length;
+    feedbackText.textContent = '\u201c' + items[index].text + '\u201d';
+
+    nextBtn.disabled = true;
+    resultEl.classList.remove('visible');
+    resultEl.innerHTML = '';
+
+    // Reset meter bars
+    Object.keys(bars).forEach(function(key) {
+      bars[key].style.width = baseMeter[key] + '%';
+    });
+
+    choicesEl.innerHTML = '';
+    items[index].fixes[role].forEach(function(fix) {
+      var btn = document.createElement('button');
+      btn.className = 'choice';
+      btn.textContent = fix.label;
+      btn.onclick = function() { chooseFix(fix, btn); };
+      choicesEl.appendChild(btn);
+    });
+  }
+
+  function chooseFix(fix, el) {
+    document.querySelectorAll('.choice').forEach(function(c) {
+      c.classList.remove('selected');
+    });
+    el.classList.add('selected');
+
+    bars[fix.impact].style.width = '85%';
+
+    resultEl.innerHTML = '<strong>' + (role === 'manager' ? 'Manager' : 'Peer') + ' version of the feedback:</strong><p>' + fix.full + '</p>';
+    resultEl.classList.add('visible');
+
+    nextBtn.disabled = false;
+  }
+
+  nextBtn.onclick = function() {
+    index++;
+    if (index < items.length) {
+      loadItem();
+    } else {
+      showCompletion();
+    }
+  };
+
+  function showCompletion() {
+    gameSection.style.display  = 'none';
+    meterCard.style.display    = 'none';
+
+    var otherRole  = role === 'manager' ? 'peer' : 'manager';
+    var roleLabel  = role === 'manager' ? 'Manager' : 'Peer';
+    var otherLabel = otherRole === 'manager' ? 'Manager' : 'Peer';
+
+    document.getElementById('completionTitle').textContent = roleLabel + ' Path Complete!';
+    document.getElementById('completionSub').textContent =
+      "You practiced improving feedback through the " + roleLabel + " lens. " +
+      "Want to see how the same feedback sounds from the " + otherLabel + "'s perspective?";
+    document.getElementById('replayBtn').textContent = '🔁 Replay as ' + otherLabel;
+    document.getElementById('replayBtn').onclick = function() { startGame(otherRole); };
+
+    completionCard.classList.add('visible');
+  }
+
+  window.onload = function() {};
+</script>
 </body>
 </html>
