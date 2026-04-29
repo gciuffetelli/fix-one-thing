@@ -114,3 +114,14 @@ button:disabled {
   font-weight: 600;
   font-size: 0.85rem;
 }
+/* Prevent the game from blocking clicks before role is chosen */
+#game {
+  display: none;
+  pointer-events: none;
+}
+
+/* When game is active */
+#game.active {
+  display: block;
+  pointer-events: auto;
+}
