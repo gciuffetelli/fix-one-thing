@@ -127,21 +127,19 @@ function nextHandler() {
 function showCompletionScreen() {
   const otherRole = role === "manager" ? "peer" : "manager";
   const otherRoleLabel = otherRole === "manager" ? "Manager" : "Peer";
+game.innerHTML = `
+  <div class="card">
+    <h2>✅ Completed</h2>
+    <p>
+      You practiced improving feedback using the
+      <strong>${role === "manager" ? "Manager" : "Peer"}</strong> lens.
+    </p>
 
-  game.innerHTML = `
-    <div class="card">
-      <h2>✅ Completed</h2>
-      <p>
-        You practiced improving feedback using the
-        <strong>${role === "manager" ? "Manager" : "Peer"}</strong> lens.
-      </p>
-
-      <button onclick="resetGame('${otherRole}')">
-        🔁 Replay as ${otherRoleLabel}
-      </button>
-    </div>
-  `;
-}
+    <button onclick="resetGame('${otherRole}')">
+      🔁 Replay as ${otherRoleLabel}
+    </button>
+  </div>
+`;
 function resetGame(newRole) {
   role = newRole;
   index = 0;
