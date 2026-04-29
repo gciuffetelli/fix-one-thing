@@ -93,7 +93,10 @@ button:disabled {
   text-align: right;
 }
 
-.hidden { display: none; }
+.hidden {
+  display: none !important;
+}
+
 
 .role-badge {
   display: inline-block;
