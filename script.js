@@ -70,6 +70,10 @@ const bars = {
 
 function setRole(r) {
   role = r;
+
+  document.getElementById("roleBadge").textContent =
+    role === "manager" ? "Manager Path" : "Peer Path";
+
   roleSection.classList.add("hidden");
   game.classList.remove("hidden");
   loadItem();
