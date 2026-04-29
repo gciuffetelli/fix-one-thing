@@ -109,6 +109,7 @@ function startGame(selectedRole) {
 
   roleSection.style.display = "none";
   game.classList.add("active");
+   game.style.display = "block";
 
   roleBadge.textContent =
     role === "manager" ? "Manager Path" : "Peer Path";
