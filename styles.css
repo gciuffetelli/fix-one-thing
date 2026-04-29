@@ -13,18 +13,9 @@ body {
   padding: 2.5rem 2rem;
 }
 
-header h1 {
-  margin-bottom: 0.3rem;
-}
-
 .subtitle {
   color: #6b7280;
-  margin-bottom: 0.8rem;
-}
-
-#counter {
-  font-weight: 600;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .card {
@@ -39,62 +30,11 @@ header h1 {
   background: #f1f5f9;
   padding: 1rem;
   border-radius: 12px;
-  font-size: 1.05rem;
 }
 
-.choices {
-  display: grid;
-  gap: 0.75rem;
-}
-
-.choice {
-  padding: 0.75rem 1rem;
-  border-radius: 12px;
-  border: 1px solid #d1d5db;
-  background: #ffffff;
-  cursor: pointer;
-  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
-}
-
-.choice:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
-}
-
-.choice.selected {
-  background: #eef2ff;
-  border-color: #6366f1;
-}
-
-.meter > div {
-  margin-bottom: 0.75rem;
-}
-
-.meter span {
-  display: inline-block;
-  width: 80px;
-}
-
-.bar {
-  display: inline-block;
-  width: 60%;
-  height: 10px;
-  background: #e5e7eb;
-  border-radius: 999px;
-  overflow: hidden;
-  vertical-align: middle;
-}
-
-.bar div {
-  height: 100%;
-  width: 30%;
-  background: #4f46e5;
-  border-radius: 999px;
-  transition: width 0.4s ease;
-}
-
-.controls {
-  text-align: right;
+.role-buttons {
+  display: flex;
+  gap: 1rem;
 }
 
 button {
@@ -109,10 +49,48 @@ button {
 
 button:disabled {
   opacity: 0.5;
-  cursor: not-allowed;
 }
 
-.hidden {
-  display: none;
+.choices {
+  display: grid;
+  gap: 0.75rem;
 }
-``
+
+.choice {
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  border: 1px solid #d1d5db;
+  cursor: pointer;
+}
+
+.choice.selected {
+  background: #eef2ff;
+  border-color: #6366f1;
+}
+
+.meter span {
+  display: inline-block;
+  width: 80px;
+}
+
+.bar {
+  display: inline-block;
+  width: 60%;
+  height: 10px;
+  background: #e5e7eb;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.bar div {
+  height: 100%;
+  width: 30%;
+  background: #4f46e5;
+  transition: width 0.4s ease;
+}
+
+.controls {
+  text-align: right;
+}
+
+.hidden { display: none; }
