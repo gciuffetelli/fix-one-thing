@@ -57,6 +57,7 @@ const items = [
 const roleSection = document.getElementById("roleSelect");
 const game = document.getElementById("game");
 const originalGameHTML = game.innerHTML;
+game.classList.add("active");
 const feedbackText = document.getElementById("feedbackText");
 const choices = document.getElementById("choices");
 const counter = document.getElementById("counter");
