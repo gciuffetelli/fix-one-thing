@@ -3,32 +3,33 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fix One Thing — Role Path</title>
+  <title>Fix One Thing</title>
+
+  <!-- ✅ Stylesheet must be linked like this -->
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
 <main class="app">
 
-  <!-- ROLE SELECT -->
+  <!-- ROLE SELECTION SCREEN -->
   <section id="roleSelect" class="card">
     <h1>Fix One Thing</h1>
     <p class="subtitle">Choose your role to begin.</p>
+
     <div class="role-buttons">
-      <button onclick="setRole('manager')">I’m a Manager</button>
-      <button onclick="setRole('peer')">I’m a Peer</button>
+      <button id="managerBtn">I’m a Manager</button>
+      <button id="peerBtn">I’m a Peer</button>
     </div>
   </section>
 
-  <!-- GAME -->
-  <section id="game" class="hidden">
-
-<header>
-  <h1>Fix One Thing</h1>
-  <div id="counter"></div>
-  <div id="roleBadge" class="role-badge"></div>
-</header>
-
+  <!-- GAME SCREEN (hidden by default) -->
+  <section id="game">
+    <header>
+      <h1>Fix One Thing</h1>
+      <div id="counter"></div>
+      <div id="roleBadge" class="role-badge"></div>
+    </header>
 
     <div class="card">
       <h2>Original Feedback</h2>
@@ -41,24 +42,4 @@
     </div>
 
     <div class="card">
-      <h2>Feedback Quality</h2>
-      <div class="meter">
-        <div><span>Clarity</span><div class="bar"><div id="clarity"></div></div></div>
-        <div><span>Action</span><div class="bar"><div id="action"></div></div></div>
-        <div><span>Tone</span><div class="bar"><div id="tone"></div></div></div>
-      </div>
-    </div>
 
-    <div id="result" class="card hidden"></div>
-
-    <div class="controls">
-      <button id="next" disabled>Next</button>
-    </div>
-
-  </section>
-
-</main>
-
-<script src="script.js"></script>
-</body>
-</html>
