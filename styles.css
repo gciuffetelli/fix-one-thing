@@ -1,4 +1,6 @@
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
@@ -7,17 +9,14 @@ body {
   color: #1f2937;
 }
 
+/* App wrapper */
 .app {
   max-width: 900px;
   margin: auto;
   padding: 2.5rem 2rem;
 }
 
-.subtitle {
-  color: #6b7280;
-  margin-bottom: 1rem;
-}
-
+/* Cards */
 .card {
   background: white;
   border-radius: 16px;
@@ -26,10 +25,22 @@ body {
   box-shadow: 0 10px 25px rgba(0,0,0,0.05);
 }
 
+/* Typography */
+.subtitle {
+  color: #6b7280;
+  margin-bottom: 1rem;
+}
+
 .feedback-text {
   background: #f1f5f9;
   padding: 1rem;
   border-radius: 12px;
+}
+
+/* Role select */
+#roleSelect {
+  position: relative;
+  z-index: 10;
 }
 
 .role-buttons {
@@ -37,6 +48,7 @@ body {
   gap: 1rem;
 }
 
+/* Buttons */
 button {
   padding: 0.6rem 1.4rem;
   border-radius: 999px;
@@ -49,8 +61,33 @@ button {
 
 button:disabled {
   opacity: 0.5;
+  cursor: not-allowed;
 }
 
+/* Game area — IMPORTANT: disabled by default */
+#game {
+  display: none;
+  pointer-events: none;
+}
+
+#game.active {
+  display: block;
+  pointer-events: auto;
+}
+
+/* Role badge */
+.role-badge {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  background: #e0e7ff;
+  color: #3730a3;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+/* Choices */
 .choices {
   display: grid;
   gap: 0.75rem;
@@ -68,6 +105,7 @@ button:disabled {
   border-color: #6366f1;
 }
 
+/* Meter */
 .meter span {
   display: inline-block;
   width: 80px;
@@ -89,39 +127,9 @@ button:disabled {
   transition: width 0.4s ease;
 }
 
+/* Controls */
 .controls {
   text-align: right;
+  margin-top: 1rem;
 }
 
-.hidden {
-  display: none !important;
-}
-
-#game.hidden {
-  pointer-events: none;
-}
-#roleSelect {
-  position: relative;
-  z-index: 10;
-}
-.role-badge {
-  display: inline-block;
-  margin-top: 0.5rem;
-  padding: 0.35rem 0.85rem;
-  border-radius: 999px;
-  background: #e0e7ff;
-  color: #3730a3;
-  font-weight: 600;
-  font-size: 0.85rem;
-}
-/* Prevent the game from blocking clicks before role is chosen */
-#game {
-  display: none;
-  pointer-events: none;
-}
-
-/* When game is active */
-#game.active {
-  display: block;
-  pointer-events: auto;
-}
