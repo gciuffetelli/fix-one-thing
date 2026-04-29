@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fix One Thing – Feedback Game</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<main class="app">
+  <header>
+    <h1>Fix One Thing</h1>
+    <p class="subtitle">
+      Improve feedback by fixing the *one thing that matters most*.
+    </p>
+    <div id="counter"></div>
+  </header>
+
+  <section class="card">
+    <h2>Feedback</h2>
+    <p id="feedbackText" class="feedback-text"></p>
+  </section>
+
+  <section class="card">
+    <h2>Choose One Fix</h2>
+    <div id="choices" class="choices"></div>
+  </section>
+
+  <section class="card">
+    <h2>Feedback Quality</h2>
+    <div class="meter">
+      <div><span>Clarity</span><div class="bar"><div id="clarity"></div></div></div>
+      <div><span>Action</span><div class="bar"><div id="action"></div></div></div>
+      <div><span>Tone</span><div class="bar"><div id="tone"></div></div></div>
+    </div>
+  </section>
+
+  <section id="result" class="card hidden"></section>
+
+  <div class="controls">
+    <button id="next" disabled>Next</button>
+  </div>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
